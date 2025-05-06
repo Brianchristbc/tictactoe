@@ -1,62 +1,62 @@
-function gameBoard() {
-  const rows = 3;
-  const cols = 3;
-  const board = [];
-  for (let i = 0; i < rows; i++) {
-    board[i] = [];
-    for (let j = 0; j < cols; j++) {
-      board[i][j] = "";
+const gameSettings = () => {
+  const getNewBoard = () => {
+    const newBoard = {};
+    const rows = 3;
+    const cols = 3;
+    for (let i = 0; i < rows; i++) {
+      newBoard[i] = [];
+      for (let j = 0; j < cols; j++) {
+        newBoard[i][j] = "";
+      }
     }
-  }
-  const getBoard = () => board;
+    return newBoard;
+  };
+  return { getNewBoard };
+};
 
-  return { getBoard };
-}
-
-// i++ when drop piece
-
-function gameSet() {
-  const player = {
+const playerSettings = () => {
+  const players = {
     player1: {
       name: "Player 1",
-      symbol: "X",
+      ticker: "X",
     },
     player2: {
       name: "Player 2",
-      symbol: "O",
+      ticker: "O",
     },
   };
 
-  let playerInTurn;
-  let i = 0;
-
-  const setPlayer = () => {
-    playerInTurn = player.player1;
-    i++;
-  };
-
-  const getPlayer = () => {
-    if (i % 2 == 0) {
-      playerInTurn = player.player1;
+  let currPlayer = players.player1;
+  const getCurrPlayer = () => currPlayer;
+  const changeCurrPlayer = () => {
+    if (currPlayer == players.player1) {
+      currPlayer = players.player2;
     } else {
-      playerInTurn = player.player2;
+      currPlayer = players.player1;
     }
-    i++;
-    return playerInTurn;
+
+    return currPlayer;
   };
 
-  const getTicker = () => i;
+  return { getCurrPlayer, changeCurrPlayer };
+};
 
-  return { getPlayer, setPlayer, getTicker };
-}
+const gameController = () => {
+  let newBoard;
+  let player = playerSettings();
+  currPlayer = player.getCurrPlayer();
+  const loadGame = () => {
+    newBoard = gameSettings().getNewBoard();
 
-function gameController() {
-  const setBoard = gameBoard().getBoard();
-  const setGame = gameSet();
-  const player = setGame.getPlayer();
+    return { newBoard };
+  };
 
-  //need to figure out how to if board section is empty
-  const dropPiece = (row, col) => {};
+  const dropPiece = (rol, col) => {
+    console.log(newBoard);
+    console.log(currPlayer);
+    newBoard[rol][col] = currPlayer.ticker;
+    currPlayer = playerSettings().changeCurrPlayer();
+  };
 
-  return { setBoard, setGame };
-}
+  return { loadGame, dropPiece };
+};
