@@ -55,7 +55,7 @@ const gameController = () => {
     console.log(newBoard);
     console.log(currPlayer);
     newBoard[rol][col] = currPlayer.ticker;
-    currPlayer = playerSettings().changeCurrPlayer();
+    currPlayer = player.changeCurrPlayer();
   };
 
   return { loadGame, dropPiece };
