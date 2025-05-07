@@ -1,79 +1,79 @@
-// const gameSettings = () => {
-//   const getNewBoard = () => {
-//     const newBoard = {};
-//     const rows = 3;
-//     const cols = 3;
-//     for (let i = 0; i < rows; i++) {
-//       newBoard[i] = [];
-//       for (let j = 0; j < cols; j++) {
-//         newBoard[i][j] = "";
-//       }
-//     }
-//     return newBoard;
-//   };
-//   return { getNewBoard };
-// };
+const gameSettings = () => {
+  const getNewBoard = () => {
+    const newBoard = {};
+    const rows = 3;
+    const cols = 3;
+    for (let i = 0; i < rows; i++) {
+      newBoard[i] = [];
+      for (let j = 0; j < cols; j++) {
+        newBoard[i][j] = "";
+      }
+    }
+    return newBoard;
+  };
+  return { getNewBoard };
+};
 
-// const playerSettings = () => {
-//   const players = {
-//     player1: {
-//       name: "Player 1",
-//       ticker: "X",
-//     },
-//     player2: {
-//       name: "Player 2",
-//       ticker: "O",
-//     },
-//   };
+const playerSettings = () => {
+  const players = {
+    player1: {
+      name: "Player 1",
+      ticker: "X",
+    },
+    player2: {
+      name: "Player 2",
+      ticker: "O",
+    },
+  };
 
-//   let currPlayer = players.player1;
-//   const getCurrPlayer = () => currPlayer;
-//   const changeCurrPlayer = () => {
-//     if (currPlayer == players.player1) {
-//       currPlayer = players.player2;
-//     } else {
-//       currPlayer = players.player1;
-//     }
+  let currPlayer = players.player1;
+  const getCurrPlayer = () => currPlayer;
+  const changeCurrPlayer = () => {
+    if (currPlayer == players.player1) {
+      currPlayer = players.player2;
+    } else {
+      currPlayer = players.player1;
+    }
 
-//     return currPlayer;
-//   };
+    return currPlayer;
+  };
 
-//   return { getCurrPlayer, changeCurrPlayer };
-// };
+  return { getCurrPlayer, changeCurrPlayer };
+};
 
-// const gameController = () => {
-//   let newBoard;
-//   let player = playerSettings();
-//   currPlayer = player.getCurrPlayer();
-//   const loadGame = () => {
-//     newBoard = gameSettings().getNewBoard();
+const gameController = () => {
+  let newBoard;
+  let player = playerSettings();
+  currPlayer = player.getCurrPlayer();
+  const loadGame = () => {
+    newBoard = gameSettings().getNewBoard();
 
-//     return { newBoard };
-//   };
+    return { newBoard };
+  };
 
-//   const dropPiece = (row, col) => {
-//     console.log(newBoard);
-//     console.log(currPlayer);
-//     if (!newBoard[row][col]) {
-//       newBoard[row][col] = currPlayer.ticker;
-//       currPlayer = player.changeCurrPlayer();
-//     } else {
-//       alert("cell has already been filled");
-//     }
-//   };
+  const dropPiece = (row, col) => {
+    console.log(newBoard);
+    console.log(currPlayer);
+    if (!newBoard[row][col]) {
+      newBoard[row][col] = currPlayer.ticker;
+      currPlayer = player.changeCurrPlayer();
+    } else {
+      alert("cell has already been filled");
+    }
+  };
 
-//   return { loadGame, dropPiece };
-// };
+  return { loadGame, dropPiece };
+};
 
-// const winCondition = () => {
-//   //push this into controller later as
-//   // this will not be able to see where newboard is
-//   for (let i = 0; i < row; i++) {
-//     if (newBoard[i][0] == newBoard[i][1] && newBoard[i][1] == newBoard[i][2]) {
-//       console.log(`${currPlayer} wins`);
-//     }
-//   }
-// };
+const winCondition = () => {
+  //push this into controller later as
+  // this will not be able to see where newboard is
+  for (let i = 0; i < row; i++) {
+    if (newBoard[i][0] == newBoard[i][1] && newBoard[i][1] == newBoard[i][2]) {
+      console.log(`${currPlayer} wins`);
+    }
+  }
+};
 
 let myArr = ["O", "O", "O"];
 
